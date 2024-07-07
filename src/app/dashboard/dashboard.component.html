@@ -1,1 +1,44 @@
-<p>dashboard works!</p>
+<mat-card>
+    <mat-card-content>
+    <mat-card-title>Dashboard</mat-card-title>
+    <mat-card-actions [align]="'end'">
+        <button mat-raised-button color="primary">Start Training</button>
+    </mat-card-actions> 
+        <section style="height: 400px; overflow-y: scroll;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <!-- Calories Column -->
+                <ng-container matColumnDef="calories">
+                  <th mat-header-cell *matHeaderCellDef> Calories </th>
+                  <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
+                </ng-container>
+              
+                <!-- Duration Column -->
+                <ng-container matColumnDef="duration">
+                  <th mat-header-cell *matHeaderCellDef> Duration </th>
+                  <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+                </ng-container>
+
+                <!-- Completed Column -->
+                <ng-container matColumnDef="completed">
+                    <th mat-header-cell *matHeaderCellDef> Completed </th>
+                    <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
+                </ng-container>
+
+                  <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </section>
+    </mat-card-content>     
+</mat-card>

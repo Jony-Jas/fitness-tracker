@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { Subject, from } from 'rxjs';
@@ -9,7 +9,7 @@ import { Subject, from } from 'rxjs';
 export class AuthService {  
   private isAuthenticated = false;
 
-  constructor(private route: Router, private auth: Auth) { }
+  constructor(private route: Router, private auth: Auth, private ngZone: NgZone) { }
 
   get isUserAuthenticated(): boolean {
     return this.isAuthenticated;
@@ -20,11 +20,15 @@ export class AuthService {
       if (user) {
         console.log('User is logged in');
         this.isAuthenticated = true;
-        this.route.navigate(['/']);
+        this.ngZone.run(() => {
+          this.route.navigate(['/']);
+        });
       } else {
         console.log('User is not logged in');
         this.isAuthenticated = false;
-        this.route.navigate(['/auth/login']);
+        this.ngZone.run(() => {
+          this.route.navigate(['/auth/login']);
+        });
       }
     });
   }
