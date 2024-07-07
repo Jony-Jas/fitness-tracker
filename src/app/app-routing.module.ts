@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'training',
+    loadChildren: () => import('./training/training.module').then(m => m.TrainingModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     component: ErrorPageComponent
   }

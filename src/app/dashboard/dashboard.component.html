@@ -2,7 +2,7 @@
     <mat-card-content>
     <mat-card-title>Dashboard</mat-card-title>
     <mat-card-actions [align]="'end'">
-        <button mat-raised-button color="primary">Start Training</button>
+        <button mat-raised-button color="primary" (click)="router.navigate(['/training'])">Start Training</button>
     </mat-card-actions> 
         <section style="height: 400px; overflow-y: scroll;">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >              

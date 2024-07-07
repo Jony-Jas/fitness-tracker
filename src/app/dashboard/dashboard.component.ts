@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Firestore, Timestamp, collection, onSnapshot, Unsubscribe } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 export interface ExerciseData {
   name: string;
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   dataSource: ExerciseData[] = [];
   private unsubscribe!: Unsubscribe;
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, public router:Router) { }
 
   ngOnInit() {
     this.subscribeToExercises();

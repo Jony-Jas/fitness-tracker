@@ -1,1 +1,9 @@
-<p>ongoing-training works!</p>
+<mat-card-content>
+    <mat-card-title>
+        Training Started ....
+    </mat-card-title>
+    <mat-spinner mode="determinate" [value]="progress"></mat-spinner>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="onStop()">Stop</button>
+    </mat-card-actions>
+</mat-card-content>

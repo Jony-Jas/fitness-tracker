@@ -1,1 +1,4 @@
-<p>training works!</p>
+<mat-card>
+    <app-start-training *ngIf="!(exerciseStatus | async)" [availableExercises]="availableExercises"></app-start-training>
+    <app-ongoing-training *ngIf="exerciseStatus | async"></app-ongoing-training>
+</mat-card>

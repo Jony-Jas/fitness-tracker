@@ -1,1 +1,16 @@
-<p>start-training works!</p>
+<mat-card-content>
+    <mat-card-title>
+        Start Training
+    </mat-card-title>
+    <mat-form-field appearance="fill">
+        <mat-label>Select Exercise</mat-label>
+        <mat-select #exerciseSelect>
+          <mat-option *ngFor="let ex of availableExercises" [value]="ex">
+            {{ex.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="this.onStartTraining(exerciseSelect.value)">Start</button>
+    </mat-card-actions>
+</mat-card-content>
