@@ -1,1 +1,22 @@
-<p>login works!</p>
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>Login Page</mat-card-title>
+        <form [formGroup]="loginForm" (submit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" required [email]="true" />
+                <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">Enter Email Address</mat-error>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password" required [minlength]="6" />
+                <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">Enter Password</mat-error>
+                <mat-error *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long</mat-error>
+            </mat-form-field>
+            <br/>
+            <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button> &nbsp;
+            <button type="button" mat-stroked-button color="primary" (click)="router.navigate(['/auth/signup'])">Register</button>
+        </form>
+    </mat-card-content>
+</mat-card>

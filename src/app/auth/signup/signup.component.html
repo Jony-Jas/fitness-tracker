@@ -1,1 +1,29 @@
-<p>signup works!</p>
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>Signup Page</mat-card-title>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" type="email" formControlName="email" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" type="password" formControlName="password" required minlength="6">
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="Age" type="number" formControlName="age" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Weight</mat-label>
+                <input matInput placeholder="Weight" type="number" formControlName="weight">
+            </mat-form-field>
+            <br/>
+            <button type="submit" mat-raised-button color="primary">Signup</button>&nbsp;
+            <button type="button" mat-stroked-button color="primary" (click)="router.navigate(['/auth/login'])">Login</button>
+        </form>
+    </mat-card-content>
+</mat-card>
