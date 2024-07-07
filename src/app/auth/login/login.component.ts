@@ -16,8 +16,6 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, public router:Router) { }
 
-
-
   async onSubmit() {
     if(this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value || '';

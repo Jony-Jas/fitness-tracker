@@ -7,11 +7,11 @@ import { Subject, from } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {  
+  authChange = new Subject<boolean>();
   private isAuthenticated = false;
-
   constructor(private route: Router, private auth: Auth, private ngZone: NgZone) { }
 
-  get isUserAuthenticated(): boolean {
+  get isUserAuthenticated() {
     return this.isAuthenticated;
   }
 
@@ -19,12 +19,14 @@ export class AuthService {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         console.log('User is logged in');
+        this.authChange.next(true);
         this.isAuthenticated = true;
         this.ngZone.run(() => {
           this.route.navigate(['/']);
         });
       } else {
         console.log('User is not logged in');
+        this.authChange.next(false);
         this.isAuthenticated = false;
         this.ngZone.run(() => {
           this.route.navigate(['/auth/login']);
